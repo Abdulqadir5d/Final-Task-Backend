@@ -27,12 +27,12 @@ app.use(cors({
 const PORT = process.env.PORT || 5000;
 
 // Webhook route must be handled BEFORE global express.json()
+app.use(cookieParser());
 app.use('/api/billing', billingRoutes);
 
 // Request Parsing (for other routes)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 // Logging
 if (process.env.NODE_ENV === 'development') {
